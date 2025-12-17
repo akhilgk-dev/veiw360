@@ -2,11 +2,10 @@ import 'dart:ui';
 
 class AppStyle {
   AppStyle._();
-  static const primary = Color(0xFF005D5D);
-
+  static const primary = Color(0xFF1b8f9b);
   static const secondary = Color(0xFF2A9E9A);
   static const darkPrimary = Color.fromARGB(255, 19, 126, 137);
-  static const secondColor = Color.fromARGB(255, 190, 195, 49);
+  static const secondColor = Color(0xFFBDC432);
   static const lightPrimary = Color(0xFF1898B5);
   static const scaffoldBg = Color.fromARGB(255, 248, 251, 251);
   static const theme1 = Color.fromARGB(255, 0, 196, 190);

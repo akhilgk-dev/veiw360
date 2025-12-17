@@ -158,7 +158,9 @@ class _SplashScreenState extends State<SplashScreen>
                 oniOS: () => UpgraderAppStore(),
               ),
             ),
-            child: HomeScreen(),
+            child:
+                //BottomNav(),
+                HomeScreen(),
           ),
         );
       } else {
@@ -185,13 +187,6 @@ class _SplashScreenState extends State<SplashScreen>
                 'assets/logo/view360_logo.jpeg',
                 fit: BoxFit.fitWidth,
               ),
-            ),
-
-            LottieBuilder.asset(
-              'assets/json/splash_background.json',
-              width: screenSize.width * .8,
-              height: screenSize.height * .8,
-              fit: BoxFit.fill,
             ),
           ],
         ),

@@ -32,7 +32,7 @@ class BottomNav extends ConsumerWidget {
 
   static final List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
-    //HomePage(),
+    HomePage(),
     // SearchViewAll(isSearch: false),
     // //AllAuctionList(),
     // WalletScreen(),
@@ -79,16 +79,15 @@ class BottomNav extends ConsumerWidget {
               label: 'Home'.tr,
             ),
             BottomNavigationBarItem(
-              icon: ImageIcon(
-                AssetImage(
-                  state.selectedIndex == 1
-                      ? selectedIcon[5]
-                      : unselectedIcon[4],
-                ),
-                color: AppStyle.primary,
-                size: 24,
-              ),
-              label: 'All Auctions'.tr,
+              icon: state.selectedIndex == 1
+                  ? Icon(Icons.dashboard, color: AppStyle.secondary, size: 24)
+                  : Icon(
+                      Icons.dashboard_outlined,
+                      color: AppStyle.secondary,
+                      size: 22,
+                    ),
+
+              label: 'Misc'.tr,
             ),
 
             // BottomNavigationBarItem(
