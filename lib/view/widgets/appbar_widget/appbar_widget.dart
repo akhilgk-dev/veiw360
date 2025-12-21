@@ -106,21 +106,18 @@ class TransalatorIcon extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+        margin: EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(
-          color: Colors.white70,
+          color: Colors.white10,
           borderRadius: BorderRadius.circular(10),
         ),
-        height: 30,
-        width: 40,
+        height: 45,
+        width: 50,
         child: Padding(
-          padding: const EdgeInsets.all(0.0),
+          padding: const EdgeInsets.all(2.0),
           child: Center(
-            child: SvgPicture.asset(
-              "assets/splash/eng-arab.svg",
-              colorFilter: ColorFilter.mode(
-                AppStyle.secondary,
-                BlendMode.srcIn,
-              ),
+            child: Image.asset(
+              "assets/splash/arabi_eng.png",
 
               // Text(
               //   languageController.selectedLanguage.value == 1

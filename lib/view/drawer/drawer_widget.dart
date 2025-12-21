@@ -85,11 +85,11 @@ class DrawerWidget extends StatelessWidget {
                     Row(
                       children: [
                         Container(
-                          height: 54,
-                          width: 54,
+                          height: 64,
+                          width: 64,
                           decoration: BoxDecoration(
                             color: AppStyle.lightGray3,
-                            borderRadius: BorderRadius.circular(27),
+                            borderRadius: BorderRadius.circular(15),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black12,
@@ -97,16 +97,22 @@ class DrawerWidget extends StatelessWidget {
                                 offset: Offset(0, 2),
                               ),
                             ],
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(6.0),
-                            child: Image.asset(
-                              'assets/mzadcom-logo.png',
-                              fit: BoxFit.fitWidth,
+                            image: DecorationImage(
+                              image: AssetImage(
+                                'assets/logo/view360_logo.jpeg',
+                              ),
                             ),
                           ),
+
+                          // child: Padding(
+                          //   padding: const EdgeInsets.all(6.0),
+                          //   child: Image.asset(
+                          //     'assets/logo/view360_logo.jpeg',
+                          //     fit: BoxFit.cover,
+                          //   ),
+                          // ),
                         ),
-                        width10,
+                        width20,
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -119,7 +125,7 @@ class DrawerWidget extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Mzadcom'.tr,
+                              'View 360'.tr,
                               style: blackStyle.copyWith(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -235,7 +241,7 @@ class DrawerWidget extends StatelessWidget {
               padding: EdgeInsets.all(10),
               itemCount: (token != null && token.isNotEmpty)
                   ? drawerText.length
-                  : drawerText.length - 1,
+                  : drawerText.length,
               separatorBuilder: (context, idx) => Divider(
                 color: AppStyle.lightGray3,
                 thickness: 0.5,
@@ -388,94 +394,94 @@ class DrawerWidget extends StatelessWidget {
             ),
           ),
           Divider(thickness: 0.2, color: white.withValues()),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 10),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          'Follow us on'.tr,
-                          style: whiteStyle.copyWith(
-                            fontSize: 14,
-                            color: AppStyle.darkGolden,
-                          ),
-                        ),
-                        // Text(
-                        //   'Powered by Mzadcom'.tr,
-                        //   style: smallFontSize12.copyWith(color: black),
-                        // ),
-                      ],
-                    ),
-                    width05,
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(socialmediaIcon.length, (index) {
-                        return Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              debugPrint('Social Media Icon $index tapped');
-                              // if (index == 0) {
-                              //   instagrame(androidUrlValue: '');
-                              // }
+          // Padding(
+          //   padding: EdgeInsets.symmetric(vertical: 10),
+          //   child: Column(
+          //     children: [
+          //       Row(
+          //         mainAxisAlignment: MainAxisAlignment.center,
+          //         children: [
+          //           Column(
+          //             children: [
+          //               Text(
+          //                 'Follow us on'.tr,
+          //                 style: whiteStyle.copyWith(
+          //                   fontSize: 14,
+          //                   color: AppStyle.darkGolden,
+          //                 ),
+          //               ),
+          //               // Text(
+          //               //   'Powered by Mzadcom'.tr,
+          //               //   style: smallFontSize12.copyWith(color: black),
+          //               // ),
+          //             ],
+          //           ),
+          //           width05,
+          //           Row(
+          //             mainAxisAlignment: MainAxisAlignment.center,
+          //             children: List.generate(socialmediaIcon.length, (index) {
+          //               return Padding(
+          //                 padding: EdgeInsets.all(8.0),
+          //                 child: InkWell(
+          //                   onTap: () {
+          //                     debugPrint('Social Media Icon $index tapped');
+          //                     // if (index == 0) {
+          //                     //   instagrame(androidUrlValue: '');
+          //                     // }
 
-                              if (index == 0) {
-                                instagrame(
-                                  androidUrlValue:
-                                      'https://www.instagram.com/mzadcomom',
-                                );
-                              }
-                              if (index == 1) {
-                                instagrame(
-                                  androidUrlValue:
-                                      'https://www.facebook.com/share/',
-                                );
-                              }
-                              if (index == 2) {
-                                instagrame(
-                                  androidUrlValue:
-                                      'https://x.com/mzadcomom?s=11',
-                                );
-                              }
-                              // if (index == 2) {
-                              //   instagrame(androidUrlValue: '');
-                              // }
-                            },
-                            child: CircleAvatar(
-                              backgroundColor: black.withValues(alpha: 0.05),
-                              radius: 18,
-                              child: CircleAvatar(
-                                // backgroundImage: AssetImage(
-                                //   socialmediaIcon[index],
-                                // ),
-                                radius: 14,
-                                backgroundColor: white,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(3.0),
-                                  child: Image.asset(
-                                    socialmediaIcon[index],
-                                    height: 20,
-                                    //color: black.withValues(alpha: 0.8),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        );
-                      }),
-                    ),
-                  ],
-                ),
-                // height05,
+          //                     if (index == 0) {
+          //                       instagrame(
+          //                         androidUrlValue:
+          //                             'https://www.instagram.com/mzadcomom',
+          //                       );
+          //                     }
+          //                     if (index == 1) {
+          //                       instagrame(
+          //                         androidUrlValue:
+          //                             'https://www.facebook.com/share/',
+          //                       );
+          //                     }
+          //                     if (index == 2) {
+          //                       instagrame(
+          //                         androidUrlValue:
+          //                             'https://x.com/mzadcomom?s=11',
+          //                       );
+          //                     }
+          //                     // if (index == 2) {
+          //                     //   instagrame(androidUrlValue: '');
+          //                     // }
+          //                   },
+          //                   child: CircleAvatar(
+          //                     backgroundColor: black.withValues(alpha: 0.05),
+          //                     radius: 18,
+          //                     child: CircleAvatar(
+          //                       // backgroundImage: AssetImage(
+          //                       //   socialmediaIcon[index],
+          //                       // ),
+          //                       radius: 14,
+          //                       backgroundColor: white,
+          //                       child: Padding(
+          //                         padding: const EdgeInsets.all(3.0),
+          //                         child: Image.asset(
+          //                           socialmediaIcon[index],
+          //                           height: 20,
+          //                           //color: black.withValues(alpha: 0.8),
+          //                         ),
+          //                       ),
+          //                     ),
+          //                   ),
+          //                 ),
+          //               );
+          //             }),
+          //           ),
+          //         ],
+          //       ),
+          //       // height05,
 
-                // height10,
-              ],
-            ),
-          ),
+          //       // height10,
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );

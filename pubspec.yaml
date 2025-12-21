@@ -66,6 +66,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_dotenv: ^6.0.0
   syncfusion_flutter_charts: ^31.1.19
+  bottom_picker: ^4.1.1
 
 dev_dependencies:
   flutter_test:
