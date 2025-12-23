@@ -70,9 +70,19 @@ class AppStyle {
     Color.fromARGB(255, 17, 131, 245),
     Color(0xFF188E9A),
     Color(0xFF27AE60),
-    Color.fromARGB(255, 239, 59, 59),
+    Color.fromARGB(255, 244, 132, 4),
     Color.fromARGB(255, 1, 81, 240),
     Color.fromARGB(255, 196, 1, 245),
-    Color.fromARGB(255, 244, 132, 4),
+    Color.fromARGB(255, 239, 59, 59),
+  ];
+  // Updated lightColorsList for better visibility
+  static const lightColorsList = [
+    Color.fromARGB(80, 17, 131, 245),
+    Color.fromARGB(80, 24, 141, 154),
+    Color.fromARGB(80, 39, 174, 96),
+    Color.fromARGB(80, 244, 132, 4),
+    Color.fromARGB(80, 1, 81, 240),
+    Color.fromARGB(80, 146, 140, 80),
+    Color.fromARGB(80, 239, 59, 59),
   ];
 }
