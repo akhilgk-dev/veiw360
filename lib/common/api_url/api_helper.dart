@@ -50,6 +50,10 @@ final winningBidsEndpoint = '/v2/auctions/winning/';
 final approvalPendingListEndpoint = '/v2/auction-payment';
 final bannersEndpoint = '/banners';
 
+//mzadcom dashboard
+final mzadOverView = '/v2/management/auctions/overview';
+final mzadProjectAndVAT = '/m-dashboard-summary';
+
 //enroll------
 
 final enrollBankTransferEndpoint = '/enroll_user';

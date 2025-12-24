@@ -3,6 +3,11 @@ import 'package:bottom_picker/resources/arrays.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:view360/api/mzadcom/acution_overview/over_view_api.dart';
+import 'package:view360/api/mzadcom/project_overview/project_overview_api.dart';
+import 'package:view360/common/api_url/api_helper.dart';
+import 'package:view360/common/theme/app_style.dart';
 import 'package:view360/common/theme/colors.dart';
 import 'package:view360/common/theme/sized_box.dart';
 import 'package:view360/view/mzadcom/mzad_home_widgets/overview_widget.dart';
@@ -20,8 +25,44 @@ class MzadcomHomeScreen extends StatefulWidget {
 
 class _MzadcomHomeScreenState extends State<MzadcomHomeScreen> {
   TextEditingController searchController = TextEditingController();
+  String selectedValue = 'Last 7 Days';
+  final overViewController = Get.put(MzadOverviewApi());
+  final projectOverviewController = Get.put(MzadProjectOverview());
+  @override
+  void initState() {
+    String endDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+    String startDate = DateFormat(
+      'yyyy-MM-dd',
+    ).format(DateTime.now().subtract(Duration(days: 7)));
+    overViewController.getMzadOverviewData(startDate, endDate);
+    projectOverviewController.getProjectOverviewData(startDate, endDate);
+    super.initState();
+  }
+
+  void applyDatefilter(String range) {
+    DateTime endDate = DateTime.now();
+    DateTime startDate;
+    if (range == 'Last 7 Days') {
+      startDate = endDate.subtract(Duration(days: 7));
+    } else if (range == 'Today') {
+      startDate = endDate;
+    } else if (range == 'Last 15 Days') {
+      startDate = endDate.subtract(Duration(days: 15));
+    } else if (range == 'Last 30 Days') {
+      startDate = endDate.subtract(Duration(days: 30));
+    } else {
+      startDate = DateTime(2000); // Arbitrary early date for 'All'
+    }
+
+    overViewController.getMzadOverviewData(
+      DateFormat('yyyy-MM-dd').format(startDate),
+      DateFormat('yyyy-MM-dd').format(endDate),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    var textStyle = TextStyle(fontSize: 14, color: AppStyle.darkGray);
     return Scaffold(
       appBar: AppbarWidget(title: 'Mzadcom Home'),
       body: SingleChildScrollView(
@@ -89,15 +130,55 @@ class _MzadcomHomeScreenState extends State<MzadcomHomeScreen> {
                         ),
                       ),
                     ),
-                    width15,
+                    width05,
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 6),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
 
-                    IconButton(
-                      onPressed: () {
-                        _openRangeDatePicker(context);
-                      },
-                      icon: Icon(Icons.calendar_month),
+                      child: DropdownButton<String>(
+                        value: selectedValue,
+                        items: [
+                          DropdownMenuItem(
+                            value: 'Today',
+                            child: Text('Today', style: textStyle),
+                          ),
+                          DropdownMenuItem(
+                            value: 'Last 7 Days',
+                            child: Text('Last 7 Days', style: textStyle),
+                          ),
+                          DropdownMenuItem(
+                            value: 'Last 15 Days',
+                            child: Text('Last 15 Days', style: textStyle),
+                          ),
+                          DropdownMenuItem(
+                            value: 'Last 30 Days',
+                            child: Text('Last 30 Days', style: textStyle),
+                          ),
+                          DropdownMenuItem(
+                            value: 'All',
+                            child: Text('All', style: textStyle),
+                          ),
+                        ],
+                        onChanged: (value) {
+                          applyDatefilter(value!);
+                          setState(() {
+                            selectedValue = value!;
+                          });
+                        },
+                        underline: SizedBox(), // Removes the underline
+                        icon: Icon(Icons.sort_rounded), // Keeps the sort icon
+                      ),
                     ),
-                    width10,
+
+                    // IconButton(
+                    //   onPressed: () {
+                    //     _openRangeDatePicker(context);
+                    //   },
+                    //   icon: Icon(Icons.calendar_month),
+                    // ),
                   ],
                 ),
               ),
@@ -107,13 +188,38 @@ class _MzadcomHomeScreenState extends State<MzadcomHomeScreen> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               height10,
-              MzaccomOverview(),
+              Obx(() {
+                if (overViewController.isloading.value) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                if (overViewController.data.value.error != '' ||
+                    overViewController.data.value.error != null) {
+                  return MzaccomOverview(
+                    overviewData: overViewController.data.value.data!,
+                  );
+                }
+                return MzaccomOverview(
+                  overviewData: overViewController.data.value.data!,
+                );
+              }),
+
               height35,
               Text(
                 "Project Summary".tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               height10,
+              Obx(() {
+                if (projectOverviewController.isloading.value) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                if (projectOverviewController.data.value.projectSummary ==
+                        null ||
+                    projectOverviewController.data.value.vatSummary == null) {
+                  return Text("Error");
+                }
+                return ProjectSummary();
+              }),
               ProjectSummary(),
               height35,
               Text(
