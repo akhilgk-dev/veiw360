@@ -53,6 +53,7 @@ final bannersEndpoint = '/banners';
 //mzadcom dashboard
 final mzadOverView = '/v2/management/auctions/overview';
 final mzadProjectAndVAT = '/m-dashboard-summary';
+final clientsList = "/organizations/list?";
 
 //enroll------
 

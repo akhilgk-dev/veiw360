@@ -220,7 +220,7 @@ class _MzadcomHomeScreenState extends State<MzadcomHomeScreen> {
                 }
                 return ProjectSummary();
               }),
-              ProjectSummary(),
+
               height35,
               Text(
                 "Profit and Vat Summary".tr,
